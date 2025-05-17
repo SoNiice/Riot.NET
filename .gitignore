@@ -1,0 +1,84 @@
+## Ignore Visual Studio temporary files, build results, and user files
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Ignore build results
+*.dll
+*.exe
+*.app
+*.log
+*.vspscc
+*.vssscc
+*.pdb
+*.cache
+*.mdb
+
+## Rider-specific
+.idea/
+*.sln.iml
+
+## Ignore NuGet packages
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+
+## Ignore ASP.NET temporary files
+**/App_Data/Logs/
+**/App_Data/cache/
+**/App_Data/uploads/
+
+## Ignore .NET Core generated files
+project.lock.json
+project.assets.json
+*.deps.json
+*.runtimeconfig.json
+
+## Ignore coverage results
+coverage/
+*.coverage
+*.coveragexml
+*.testresults
+
+## Ignore others
+*.tmp
+*.bak
+*.swp
+*.scc
+_ReSharper*/       # Resharper folder (optional but common)
+*.DotSettings.user  # Rider/Resharper user settings
+
+# Ignore global.json user override
+global.json.user
+
+# Ignore JetBrains Rider logs and other local settings
+.idea/
+.idea_modules/
+.idea/.idea.*
+
+# Ignore local test results
+TestResults/
+*.trx
+*.vsmdi
+
+# Ignore configuration transforms
+*.config.transform
+
+# Optional: Rider-specific caches
+.idea/.idea.IC/
+.idea/.idea.Rider*
+
+# Ignore Rider workspace files
+*.iws
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
