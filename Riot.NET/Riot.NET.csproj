@@ -9,7 +9,7 @@
         <Description>C# wrapper for the Riot Games API</Description>
         <Copyright>Copyright (c) Marcel 'SoNiice' Weber - 2025</Copyright>
         <PackageProjectUrl>https://github.com/SoNiice/Riot.NET</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/SoNiice/Riot.NET/LICENSE</PackageLicenseUrl>
+        <PackageLicenseUrl>https://github.com/SoNiice/Riot.NET/blob/main/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/SoNiice/Riot.NET</RepositoryUrl>
         <Company>Marcel 'SoNiice' Weber</Company>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

@@ -10,6 +10,8 @@
 
 <p align="center">
     Implemented Endpoints
+
+[![NuGet version](https://badge.fury.io/nu/SoNiice.Riot.NET.svg)](https://badge.fury.io/nu/SoNiice.Riot.NET) [![Build status](https://ci.appveyor.com/api/projects/status/3vra802k68xy380e?svg=true)](https://ci.appveyor.com/project/SoNiice/riot-net)
 </p>
 
 | Resource                                  | Status                                                                                   |
@@ -39,7 +41,7 @@
 | [TFT-Status](/Riot.NET/Endpoints)         | ![TFT-Status](https://img.shields.io/badge/missing_version-v1-red.svg)                   |
 | [TFT-Summoner](/Riot.NET/Endpoints)       | ![TFT-Summoner](https://img.shields.io/badge/missing_version-v1-red.svg)                 |
 | [Tournament-Stub](/Riot.NET/Endpoints)    | ![Tournament-Stub](https://img.shields.io/badge/implemented_version-v5-brightgreen.svg)  |
-| [Tournament](/Riot.NET/Endpoints)         | ![Tournament](https://img.shields.io/badge/implemented_version-v5-brightgreen.svg)                   |
+| [Tournament](/Riot.NET/Endpoints)         | ![Tournament](https://img.shields.io/badge/implemented_version-v5-brightgreen.svg)       |
 | [VAL-Console-Match](/Riot.NET/Endpoints)  | ![VAL-Console-Match](https://img.shields.io/badge/missing_version-v1-red.svg)            |
 | [VAL-Console-Ranked](/Riot.NET/Endpoints) | ![VAL-Console-Ranked](https://img.shields.io/badge/missing_version-v1-red.svg)           |
 | [VAL-Content](/Riot.NET/Endpoints)        | ![VAL-Content](https://img.shields.io/badge/missing_version-v1-red.svg)                  |
