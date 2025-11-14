@@ -1,0 +1,1 @@
+﻿namespace Riot.NET.Endpoints.DataDragon.Endpoints.Version.Responses;

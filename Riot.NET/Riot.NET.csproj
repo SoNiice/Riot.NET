@@ -7,18 +7,35 @@
         <LangVersion>latest</LangVersion>
         <Authors>Marcel 'SoNiice' Weber</Authors>
         <Description>C# wrapper for the Riot Games API</Description>
-        <Copyright>Copyright (c) Marcel 'SoNiice' Weber - 2025 </Copyright>
+        <Copyright>Copyright (c) Marcel 'SoNiice' Weber - 2025</Copyright>
         <PackageProjectUrl>https://github.com/SoNiice/Riot.NET</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/SoNiice/Riot.NET/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/SoNiice/Riot.NET</RepositoryUrl>
         <Company>Marcel 'SoNiice' Weber</Company>
-        <PackageIcon>logo.png</PackageIcon>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageIcon>Riot.NET.png</PackageIcon>
+        <PackageId>SoNiice.Riot.NET</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="..\logo.png">
+        <ProjectReference Include="..\Riot.NET.Generator\Riot.NET.Generator.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Riot.NET.png">
         <Pack>True</Pack>
-        <Link>logo.png</Link>
+        <PackagePath></PackagePath>
+      </None>
+      <None Include="..\..\..\..\Pictures\Riot.NET.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>Riot.NET.png</Link>
       </None>
     </ItemGroup>
 
