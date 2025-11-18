@@ -16,16 +16,11 @@ public abstract class DataDragonDataMethodBase<TResponse>(string endpoint, RateL
         return (string.Empty, formattedUrl);
     }
 
-    protected override string FormatBody()
-    {
-        return string.Empty;
-    }
-
     public override async Task<TResponse> ExecuteAsync()
     {
         var (region, formattedUrl) = FormatUrlAndGetRegion();
         var url = Url.Replace("/cdn/", $"/cdn/{Version}/data/{Language}/");
-        var response = await RateLimiter.SendAsync(HttpMethod.Get, region, "https://ddragon.leagueoflegends.com" + url, formattedUrl, string.Empty, false);
+        var response = await RateLimiter.SendAsync(HttpMethod.Get, region, "https://ddragon.leagueoflegends.com" + url, formattedUrl, string.Empty, string.Empty, false);
         var json = await response.Content.ReadAsStringAsync();
 
         return DeserializeResponse(json);

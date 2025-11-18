@@ -24,10 +24,11 @@ public abstract class MethodBase<TResponse>(string endpoint, RateLimiter.RateLim
 
     public virtual async Task<TResponse> ExecuteAsync()
     {
+        var accessToken = GetAccessToken();
         var (region, formattedUrl) = FormatUrlAndGetRegion();
         var body = FormatBody();
 
-        var response = await RateLimiter.SendAsync(GetPathMethod(), region, Url, formattedUrl, body);
+        var response = await RateLimiter.SendAsync(GetPathMethod(), region, Url, formattedUrl, body, accessToken);
         var json = await response.Content.ReadAsStringAsync();
 
         return DeserializeResponse(json);
@@ -35,10 +36,11 @@ public abstract class MethodBase<TResponse>(string endpoint, RateLimiter.RateLim
 
     public virtual TResponse Execute()
     {
+        var accessToken = GetAccessToken();
         var (region, formattedUrl) = FormatUrlAndGetRegion();
         var body = FormatBody();
 
-        var response = RateLimiter.Send(GetPathMethod(), region, Url, formattedUrl, body);
+        var response = RateLimiter.Send(GetPathMethod(), region, Url, formattedUrl, body, accessToken);
         var receiveStream = response.Content.ReadAsStream();
         var readStream = new StreamReader(receiveStream);
         var json = readStream.ReadToEnd();
@@ -50,10 +52,19 @@ public abstract class MethodBase<TResponse>(string endpoint, RateLimiter.RateLim
     {
         if (string.IsNullOrEmpty(json))
             return new TResponse();
-        
+
         return JsonConvert.DeserializeObject<TResponse>(json) ?? new TResponse();
     }
 
+    protected virtual string GetAccessToken()
+    {
+        return string.Empty;
+    }
+
+    protected virtual string FormatBody()
+    {
+        return string.Empty;
+    }
+
     protected abstract (string region, string formattedUrl) FormatUrlAndGetRegion();
-    protected abstract string FormatBody();
 }

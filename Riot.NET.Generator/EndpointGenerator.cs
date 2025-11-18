@@ -63,6 +63,8 @@ namespace {endpointNamespace}
                 ITypeSymbol responseTypeSymbol = null;
                 var isRegionBased = false;
                 var isShardBased = false;
+                var isAccessTokenBased = false;
+                var isRegionAccessTokenBased = false;
                 var isDataDragonDataBased = false;
                 var isDataDragonFilteredDataBased = false;
                 var isValorantApiDataBased = false;
@@ -86,7 +88,11 @@ namespace {endpointNamespace}
                         implementsIMethod = true;
                         responseTypeSymbol = currentType.TypeArguments[0];
 
-                        if (currentType.Name.Contains("RegionMethodBase"))
+                        if (currentType.Name.Contains("StaticShardAccessTokenMethodBase"))
+                            isAccessTokenBased = true;
+                        else if (currentType.Name.Contains("RegionAccessTokenMethodBase"))
+                            isRegionAccessTokenBased = true;
+                        else if (currentType.Name.Contains("RegionMethodBase"))
                             isRegionBased = true;
                         else if (currentType.Name.Contains("ShardMethodBase") && !currentType.Name.Contains("StaticShardMethodBase"))
                             isShardBased = true;
@@ -144,6 +150,27 @@ namespace {endpointNamespace}
                     xmlDoc.AppendLine($"        /// {methodSummary}");
 
                 xmlDoc.AppendLine("        /// </summary>");
+                
+                if (isRegionAccessTokenBased)
+                {
+                    parameters.Append("Region region");
+                    parameters.Append(", ");
+                    parameters.Append("string accessToken");
+                    argumentsList.Append("Region = region");
+                    argumentsList.Append(@",
+                ");
+                    argumentsList.Append("AccessToken = accessToken");
+                    firstParam = false;
+                    xmlDoc.AppendLine("        /// <param name=\"accessToken\">A users access token obtained by OAuth</param>");
+                }
+
+                if (isAccessTokenBased)
+                {
+                    parameters.Append("string accessToken");
+                    argumentsList.Append("AccessToken = accessToken");
+                    firstParam = false;
+                    xmlDoc.AppendLine("        /// <param name=\"accessToken\">A users access token obtained by OAuth</param>");
+                }
 
                 if (isRegionBased)
                 {

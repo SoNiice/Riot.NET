@@ -23,7 +23,7 @@ public abstract class ValorantApiMethodBase<TResponse>(string endpoint, RateLimi
     {
         var (region, formattedUrl) = FormatUrlAndGetRegion();
 
-        var response = await RateLimiter.SendAsync(HttpMethod.Get, region, "https://valorant-api.com" + Url, formattedUrl, string.Empty, false);
+        var response = await RateLimiter.SendAsync(HttpMethod.Get, region, "https://valorant-api.com" + Url, formattedUrl, string.Empty, string.Empty, false);
         var json = await response.Content.ReadAsStringAsync();
 
         return DeserializeResponse(json);

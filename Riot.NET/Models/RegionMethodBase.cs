@@ -15,9 +15,4 @@ public abstract class RegionMethodBase<TResponse>(string endpoint, RateLimiter.R
 
         return (region, formattedUrl);
     }
-
-    protected override string FormatBody()
-    {
-        return string.Empty;
-    }
 }

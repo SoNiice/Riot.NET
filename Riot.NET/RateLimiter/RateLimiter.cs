@@ -53,6 +53,7 @@ public class RateLimiter(string apiKey, bool throwOnRateLimit = false, int rateL
         string url,
         string path,
         string body,
+        string accessToken,
         bool useApplicationLimits = true,
         CancellationToken cancellationToken = default)
     {
@@ -95,7 +96,11 @@ public class RateLimiter(string apiKey, bool throwOnRateLimit = false, int rateL
         }
 
         var request = new HttpRequestMessage(method, string.IsNullOrEmpty(region) ? url : $"https://{region}.api.riotgames.com{path}");
-        request.Headers.Add("X-Riot-Token", apiKey);
+
+        if (string.IsNullOrEmpty(accessToken))
+            request.Headers.Add("X-Riot-Token", apiKey);
+        else
+            request.Headers.Add("Authorization", "Bearer " + accessToken);
 
         if (!string.IsNullOrEmpty(body))
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
@@ -115,7 +120,7 @@ public class RateLimiter(string apiKey, bool throwOnRateLimit = false, int rateL
                     throw new RateLimitExceededException(RateLimitScope.Method, region, url, -1, retryAfter);
 
                 await Task.Delay(retryAfter, cancellationToken);
-                return await SendAsync(method, region, url, path, body, useApplicationLimits, cancellationToken);
+                return await SendAsync(method, region, url, path, body, accessToken, useApplicationLimits, cancellationToken);
             }
         }
 
@@ -141,6 +146,7 @@ public class RateLimiter(string apiKey, bool throwOnRateLimit = false, int rateL
         string url,
         string path,
         string body,
+        string accessToken,
         bool useApplicationLimits = true)
     {
         if (useApplicationLimits && _regionAppLimits.TryGetValue(region, out var appRules) && !TryCheckRateLimit(appRules, out var retryApp, out var countApp))
@@ -152,7 +158,11 @@ public class RateLimiter(string apiKey, bool throwOnRateLimit = false, int rateL
             throw new RateLimitExceededException(RateLimitScope.Method, region, url, countMethod, retryMethod);
 
         var request = new HttpRequestMessage(method, string.IsNullOrEmpty(region) ? url : $"https://{region}.api.riotgames.com{path}");
-        request.Headers.Add("X-Riot-Token", apiKey);
+
+        if (string.IsNullOrEmpty(accessToken))
+            request.Headers.Add("X-Riot-Token", apiKey);
+        else
+            request.Headers.Add("Authorization", accessToken);
 
         if (!string.IsNullOrEmpty(body))
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");

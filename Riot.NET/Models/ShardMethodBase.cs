@@ -15,9 +15,4 @@ public abstract class ShardMethodBase<TResponse>(string endpoint, RateLimiter.Ra
 
         return (region, formattedUrl);
     }
-
-    protected override string FormatBody()
-    {
-        return string.Empty;
-    }
 }

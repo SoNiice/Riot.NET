@@ -24,7 +24,7 @@ public abstract class ValorantApiDataMethodBase<TResponse>(string endpoint, Rate
     {
         var (region, formattedUrl) = FormatUrlAndGetRegion();
         var url = formattedUrl + (formattedUrl.Contains('?') ? $"&language={Language.Replace('_', '-')}" : $"?language={Language.Replace('_', '-')}");
-        var response = await RateLimiter.SendAsync(HttpMethod.Get, region, "https://valorant-api.com" + url, formattedUrl, string.Empty, false);
+        var response = await RateLimiter.SendAsync(HttpMethod.Get, region, "https://valorant-api.com" + url, formattedUrl, string.Empty, string.Empty, false);
         var json = await response.Content.ReadAsStringAsync();
 
         return DeserializeResponse(json);

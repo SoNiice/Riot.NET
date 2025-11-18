@@ -25,6 +25,8 @@ public class MethodSyntaxReceiver : ISyntaxReceiver
                     t.Type.ToString().StartsWith("RegionMethodBase<") ||
                     t.Type.ToString().StartsWith("ShardMethodBase<") ||
                     t.Type.ToString().StartsWith("StaticShardMethodBase<") ||
+                    t.Type.ToString().StartsWith("StaticShardAccessTokenMethodBase<") ||
+                    t.Type.ToString().StartsWith("RegionAccessTokenMethodBase<") ||
                     t.Type.ToString().StartsWith("DataDragonMethodBase<") ||
                     t.Type.ToString().StartsWith("DataDragonDataMethodBase<") ||
                     t.Type.ToString().StartsWith("DataDragonFilteredDataMethodBase<") ||
